@@ -43,7 +43,7 @@ public class ClientBehaviour : MonoBehaviour
     }
     private void FinishEating()
     {
-        //gamemanager dinheiros adicionar blá blá
+        //gamemanager dinheiros adicionar blï¿½ blï¿½
 
         Destroy(gameObject);
     }

@@ -7,6 +7,9 @@ public class ListaController : MonoBehaviour
     public static GameObject ficha;
     public GameObject ficha2;
     public ListaDePedidos lista = new ListaDePedidos();
+    [SerializeField] private GameObject painelPedidos;
+    private static ListaController gambilista; //gambiarra feia horrível nojenta outro dia eu sento com vcs e ajeito tudo -alu
+
     void Start()
     {
 
@@ -15,6 +18,7 @@ public class ListaController : MonoBehaviour
     private void Awake()
     {
         ficha = ficha2;
+        gambilista = FindFirstObjectByType<ListaController>(); //gambiarra extendida
     }
     void Update()
     {
@@ -30,8 +34,6 @@ public class ListaController : MonoBehaviour
 
     public static void AddPedido(ClientBehaviour client)    //gambiarra total
     {
-        ListaController gambilista = FindFirstObjectByType<ListaController>();
-
         client.pedido = gambilista.lista.Adicionar();
     }
     
@@ -49,7 +51,7 @@ public class ListaController : MonoBehaviour
         public Pedido Adicionar()
         {
             Pedido p = Instantiate(ficha).GetComponent<Pedido>();
-            p.gameObject.transform.SetParent(FindFirstObjectByType<ListaController>().transform);
+            p.gameObject.transform.SetParent(ListaController.gambilista.painelPedidos.transform);
             p.gameObject.transform.localPosition = new Vector3(50 + index * 100, 57);
             tail.seg = p;
             tail = p;
